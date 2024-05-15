@@ -1,0 +1,17 @@
+[
+    {
+        "Name ": "Cake",
+        "Price ": "10",
+        "Quantity": "100"
+    },
+    {
+        "Name ": "juice",
+        "Price ": "25",
+        "Quantity": "500"
+    },
+    {
+        "Name ": "Chips",
+        "Price ": "15",
+        "Quantity": "300"
+    }
+]
