@@ -36,7 +36,7 @@ def post_example():
     data = {
         'title': 'foo',
         'body': 'bar',
-        'userId': 1
+        'userId': 10
     }
     response = requests.post(url, json=data)
     
@@ -52,23 +52,52 @@ def main():
     """
     Main function to execute the examples.
     """
-    print("Executing GET example...")
+    # print("Executing GET example...")
     get_example()
     print("\nExecuting POST example...")
     post_example()
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pass
 
 
 
 # Assignments
 # 1. Modify the GET Example: Change the get_example function to fetch a list of posts instead of just one. Analyze the JSON structure and print out the titles of all posts.
 
+
+# def get_example():
+#     url = 'https://jsonplaceholder.typicode.com/posts'  
+#     response = requests.get(url)  
+
+#     if response.status_code == 200:  
+#         posts = response.json()  
+#         for post in posts:  
+#             print(post['title']) 
+#     else:
+#         print("Failed to fetch posts")
+
+# get_example()
+
 # 2. Error Handling: Add error handling to both functions to manage exceptions like connection errors or timeouts.
 
-# 3. Headers and Authentication: Modify the post_example function to include custom headers.
 
+def get_example():
+    try:
+        url = 'https://jsonplaceholder.typicode.com/posts'  # API endpoint for fetching posts
+        response = requests.get(url)  # Sending a GET request to fetch all posts
+
+        response.raise_for_status()  # Raise an exception for 4xx and 5xx status codes
+
+        posts = response.json()  # Parse the JSON response
+        for post in posts:  # Iterate through each post in the list
+            print(post['title'])  # Print the title of each post
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred while fetching posts: {e}")
+
+# Call the function to fetch and print post titles
+get_example()
 
 
 # Advanced requests
@@ -108,6 +137,8 @@ def get_with_headers():
         print(f"Timeout Error: {errt}")
     except requests.exceptions.RequestException as err:
         print(f"Error: {err}")
+    except Exception as e:
+        print(f"Unknown Error: {e}")
 
 def post_with_authentication():
     """
@@ -138,6 +169,8 @@ def post_with_authentication():
         print(f"Timeout Error: {errt}")
     except requests.exceptions.RequestException as err:
         print(f"Error: {err}")
+    except Exception as e:
+        print(f"Unknown Error: {e}")
 
 def main():
     """
@@ -155,6 +188,7 @@ def main():
     post_with_authentication()
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pass
 
 
